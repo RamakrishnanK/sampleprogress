@@ -1,0 +1,17 @@
+<h2>Resend unlock instructions</h2>
+
+<%= form_for(resource, :as => resource_name, :url => unlock_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email %><br />
+  <%= f.email_field :email, :autofocus => true %></div>
+
+  <div><%= f.submit "Resend unlock instructions" %></div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+ &nbsp;<%= link_to image_tag("loginfacebook.png", alt: ""), '/auth/facebook/' %> 
+        &nbsp;  &nbsp; &nbsp;&nbsp;&nbsp; <%= link_to image_tag("login-linkedin.png", alt: ""), '/auth/linkedin/' %>
+        &nbsp;  &nbsp;&nbsp;&nbsp; &nbsp;<%= link_to image_tag("Google_Logo.jpg", alt: ""), '/auth/google_oauth2/' %> <br>
+        Facebook  &nbsp; Linkedin&nbsp;&nbsp; &nbsp;Google     
+
