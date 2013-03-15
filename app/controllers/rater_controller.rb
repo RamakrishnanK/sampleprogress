@@ -10,23 +10,10 @@ class RaterController < ApplicationController
       
       render :json => true 
     else
-      render :json => false        
+
+      render :json => false 
+      redirect_to root_url       
     end
   end  
-  def update
-  	if current_user.present?
-      obj = eval "#{params[:klass]}.find(#{params[:id]})"     
-      if params[:dimension].present?
-        obj.rate params[:score].to_i, current_user.id, "#{params[:dimension]}"       
-      else
-        obj.rate params[:score].to_i, current_user.id 
-      end
-      
-      render :json => true 
-    else
-      render :json => false        
-    end
-  end
-  def show
-
+  
 end

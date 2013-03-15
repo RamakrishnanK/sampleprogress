@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :name,:email, :password, :password_confirmation, :remember_me,:provider, :phone,:user_type,:sub_plan,:user_desc
   # attr_accessible :title, :body
   has_many :authentication, :dependent => :delete_all
+has_many :courses, dependent: :destroy
   
 letsrate_rater
 

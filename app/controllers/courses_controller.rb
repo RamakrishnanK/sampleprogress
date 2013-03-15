@@ -1,11 +1,15 @@
 class CoursesController < ApplicationController
-	
+	before_filter :authenticate_user!, only: [:create, :edit,:update,:delete]
    def new
   	@course =Course.new
   end
   def create
-  	@course=Course.new(params[:course])
+  	@course = current_user.courses.build(params[:course])
+    @course.user_id = current_user.id
+    #@course=Course.new(params[:course])
+
   	if @course.save
+     # signed_in_user
   		flash[:success]="Course Registered Successfully"
   		redirect_to @course
   	else
@@ -30,5 +34,11 @@ class CoursesController < ApplicationController
    def index
    	@course=Course.all
    end
-		
+   def destroy
+      @course = Course.find(params[:id])
+      @course.destroy
+      flash[:success] = "Successfully destroyed course."
+      redirect_to courses_url
+    end
+
 end
